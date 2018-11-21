@@ -24,6 +24,7 @@ class ConcentrationGameViewController: UIViewController { //ViewController exten
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = correspondingThemeColor[currentThemeNumber].inverse()
+        updateViewFromModel()
     }
     
     var numberOfPairsOfCards: Int {
@@ -114,7 +115,8 @@ class ConcentrationGameViewController: UIViewController { //ViewController exten
                 currentButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             } else {
                 currentButton.setTitle("", for: UIControl.State.normal)
-                currentButton.backgroundColor = currentCard.isMatched ? correspondingThemeColor[currentThemeNumber].inverse() : correspondingThemeColor[currentThemeNumber]
+                currentButton.backgroundColor = currentCard.isMatched ?
+                    correspondingThemeColor[currentThemeNumber].inverse() : correspondingThemeColor[currentThemeNumber]
             }
         }
     }
