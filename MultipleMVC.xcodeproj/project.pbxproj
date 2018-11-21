@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		4FB640D121A4F9B30003742D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640D021A4F9B30003742D /* AppDelegate.swift */; };
-		4FB640D321A4F9B30003742D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640D221A4F9B30003742D /* ViewController.swift */; };
+		4FB640D321A4F9B30003742D /* SetGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640D221A4F9B30003742D /* SetGameViewController.swift */; };
 		4FB640D621A4F9B30003742D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB640D421A4F9B30003742D /* Main.storyboard */; };
 		4FB640D821A4F9B40003742D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB640D721A4F9B40003742D /* Assets.xcassets */; };
 		4FB640DB21A4F9B40003742D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB640D921A4F9B40003742D /* LaunchScreen.storyboard */; };
+		4FB640E321A4F9FB0003742D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640E221A4F9FB0003742D /* Card.swift */; };
+		4FB640E521A4FA110003742D /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640E421A4FA110003742D /* Set.swift */; };
+		4FB640E721A4FA220003742D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640E621A4FA220003742D /* CardView.swift */; };
+		4FB640E921A4FA350003742D /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640E821A4FA350003742D /* Grid.swift */; };
+		4FB640EB21A4FA440003742D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640EA21A4FA440003742D /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4FB640CD21A4F9B30003742D /* MultipleMVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipleMVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB640D021A4F9B30003742D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4FB640D221A4F9B30003742D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4FB640D221A4F9B30003742D /* SetGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewController.swift; sourceTree = "<group>"; };
 		4FB640D521A4F9B30003742D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FB640D721A4F9B40003742D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FB640DA21A4F9B40003742D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FB640DC21A4F9B40003742D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FB640E221A4F9FB0003742D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		4FB640E421A4FA110003742D /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		4FB640E621A4FA220003742D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		4FB640E821A4FA350003742D /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		4FB640EA21A4FA440003742D /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +65,16 @@
 			isa = PBXGroup;
 			children = (
 				4FB640D021A4F9B30003742D /* AppDelegate.swift */,
-				4FB640D221A4F9B30003742D /* ViewController.swift */,
+				4FB640D221A4F9B30003742D /* SetGameViewController.swift */,
 				4FB640D421A4F9B30003742D /* Main.storyboard */,
 				4FB640D721A4F9B40003742D /* Assets.xcassets */,
 				4FB640D921A4F9B40003742D /* LaunchScreen.storyboard */,
 				4FB640DC21A4F9B40003742D /* Info.plist */,
+				4FB640E221A4F9FB0003742D /* Card.swift */,
+				4FB640E421A4FA110003742D /* Set.swift */,
+				4FB640E621A4FA220003742D /* CardView.swift */,
+				4FB640E821A4FA350003742D /* Grid.swift */,
+				4FB640EA21A4FA440003742D /* GameView.swift */,
 			);
 			path = MultipleMVC;
 			sourceTree = "<group>";
@@ -135,8 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FB640D321A4F9B30003742D /* ViewController.swift in Sources */,
+				4FB640E521A4FA110003742D /* Set.swift in Sources */,
+				4FB640D321A4F9B30003742D /* SetGameViewController.swift in Sources */,
+				4FB640E321A4F9FB0003742D /* Card.swift in Sources */,
 				4FB640D121A4F9B30003742D /* AppDelegate.swift in Sources */,
+				4FB640E721A4FA220003742D /* CardView.swift in Sources */,
+				4FB640E921A4FA350003742D /* Grid.swift in Sources */,
+				4FB640EB21A4FA440003742D /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
