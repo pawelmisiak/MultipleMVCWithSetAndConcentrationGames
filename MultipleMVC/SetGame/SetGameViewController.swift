@@ -15,7 +15,10 @@ class SetGameViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    
     private lazy var game = Set()
+    var delay = false
+    var delayTime = 0.0
     var visibleCards = 12
     var maxNumberOfVisible = 81
     
@@ -23,6 +26,7 @@ class SetGameViewController: UIViewController {
         for card in gameView.subviews{
             card.removeFromSuperview()
         }
+        delay = false
         addThree.isEnabled = true
         addThree.backgroundColor = #colorLiteral(red: 1, green: 0.09332232228, blue: 0, alpha: 1)
         game = Set()
@@ -64,17 +68,17 @@ class SetGameViewController: UIViewController {
         addThreeCards()
     }
     var cardsToOut = Array<Int>()
-    
+
     @IBAction func touchCard(_ sender: UITapGestureRecognizer) {
         var wasCalled = false
         if sender.state == .ended {
             let location = sender.location(in: gameView)
-            
+
             if let tappedView = gameView.hitTest(location, with: nil) {
                 if let cardIndex = gameView.subviews.index(of: tappedView) {
-                    
+
                     game.chooseCard(index: cardIndex)
-                    print(game.cardsOnTable[cardIndex])
+
                     if game.arrayOfMatchedCardIndices.count == 3 {
                         for index in game.arrayOfMatchedCardIndices {
                             if game.weGotAMatch{
@@ -110,7 +114,7 @@ class SetGameViewController: UIViewController {
             updateViewFromModel();
         }
     }
-    
+
     private func addCardToTheEnd() -> CardView {
         let cardView = CardView()
         let card = game.cards.remove(at: 0)
@@ -137,8 +141,25 @@ class SetGameViewController: UIViewController {
         default:
             cardView.shade = "empty"
         }
+        
+//        for cardView in gameView.subviews {
+//            cardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(standOut(_:))))
+//        }
         return cardView
     }
+    
+    @objc func standOut(_ recognizer: UITapGestureRecognizer) {
+        switch recognizer.state {
+        case .ended:
+            if let chosenCardView = recognizer.view as? CardView {
+                print(chosenCardView.numberOfObjects)
+//                chosenCardView.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            }
+        default:
+            break
+        }
+    }
+
     
     private func insertCard(index: Int) {
         let cardView = CardView()
@@ -198,23 +219,42 @@ class SetGameViewController: UIViewController {
                             self.updateViewFromModel()
                         })
                     }
-                    if found{
-                        break
-                    }
+                    if found{break}
                 }
-                if found{
-                    break
-                }
+                if found{break}
             }
-            if found{
-                break
-            }
+            if found{break}
         }
     }
     
+    
+    func showCard(card: UIView){
+        var int = 0.0
+        if delay{
+            int = delayTime
+        }
+            card.alpha = 0
+            UIViewPropertyAnimator.runningPropertyAnimator(
+                withDuration: 1.0,
+                delay: int,
+                options: [],
+                animations: {
+                    card.transform = CGAffineTransform.identity.translatedBy(x: 500.0, y: -500.0)
+                    card.alpha = 1
+            }
+                //                completion: <#T##((UIViewAnimatingPosition) -> Void)?##((UIViewAnimatingPosition) -> Void)?##(UIViewAnimatingPosition) -> Void#>
+            )
+    }
+    
     func addCard(){
+        if gameView.subviews.count < 12 {
+            delay = true
+            delayTime += 0.1
+        }
         let currentCard = addCardToTheEnd()
         gameView.addSubview(currentCard)
+        showCard(card: currentCard)
+        delay = false
     }
     
     func checkIfAllDisabled() -> Bool{ //necessary to check if the game is about to come to the end
@@ -225,6 +265,8 @@ class SetGameViewController: UIViewController {
     }
     
     private func updateViewFromModel() {
+        delayTime = 0 // reset delay after each use
+        
         
         if game.cards.count < 3 || visibleCards == 81 {
             addThree.isEnabled = false

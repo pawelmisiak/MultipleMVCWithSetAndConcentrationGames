@@ -38,7 +38,7 @@ class ConcentrationGameViewController: UIViewController { //ViewController exten
     @IBAction func newGame() {
         game.numberOfFlips = 0  // This var is reset here instead when init because it is refreshed to 0 on press
         game.points = 0 // The same reason as above
-        emojiChoices = themes[Int(arc4random_uniform(UInt32(themes.count)))]
+        emojiChoices = themes[currentThemeNumber]
         currentThemeNumber = getThemeNumber()
         
         for index in game.cards.indices {

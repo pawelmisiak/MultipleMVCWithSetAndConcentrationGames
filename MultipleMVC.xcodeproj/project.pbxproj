@@ -95,11 +95,11 @@
 		4FB640CF21A4F9B30003742D /* MultipleMVC */ = {
 			isa = PBXGroup;
 			children = (
-				4F38A32B21A4FF270054F169 /* GameSelectorViewController.swift */,
-				4FB640D021A4F9B30003742D /* AppDelegate.swift */,
 				4F38A32821A4FD060054F169 /* SetGame */,
-				4FB640D421A4F9B30003742D /* Main.storyboard */,
+				4F38A32B21A4FF270054F169 /* GameSelectorViewController.swift */,
 				4F38A33321A502110054F169 /* ConcentrationGame */,
+				4FB640D021A4F9B30003742D /* AppDelegate.swift */,
+				4FB640D421A4F9B30003742D /* Main.storyboard */,
 				4FB640D721A4F9B40003742D /* Assets.xcassets */,
 				4FB640D921A4F9B40003742D /* LaunchScreen.storyboard */,
 				4FB640DC21A4F9B40003742D /* Info.plist */,
