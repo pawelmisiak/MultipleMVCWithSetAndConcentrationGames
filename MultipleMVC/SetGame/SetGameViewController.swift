@@ -15,20 +15,26 @@ class SetGameViewController: UIViewController {
         updateViewFromModel()
     }
     
+    lazy var grid = Grid(for: gameView.frame, withNoOfFrames: gameView.subviews.count, forIdeal: 2.0)
     
     private lazy var game = Set()
     var delayTime = 0.0
     var visibleCards = 12
     var maxNumberOfVisible = 81
     
+    @IBOutlet weak var newCards: UIView!
+    @IBOutlet weak var oldCards: UIView!
+    
     @IBAction func reset() { // reset the game to the original state
         
         resetAnimation()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+        let timeToWait = Int(ceil(Double(gameView.subviews.count) * 0.1 + 0.5))
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeToWait), execute: {
             for card in self.gameView.subviews{
                 card.removeFromSuperview()
             }
+            
             self.addThree.isEnabled = true
             self.addThree.backgroundColor = #colorLiteral(red: 1, green: 0.09332232228, blue: 0, alpha: 1)
             self.game = Set()
@@ -42,6 +48,11 @@ class SetGameViewController: UIViewController {
     }
     
     func resetAnimation(){
+        
+        for card in self.gameView.subviews{
+            card.transform.translatedBy(x: 0.0, y: 100.0)
+        }
+        
         var int = 0.0
         var i = gameView.subviews.count-1
         while i >= 0{
@@ -49,11 +60,11 @@ class SetGameViewController: UIViewController {
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: 1.0,
                 delay: int,
-                options: [],
+                options: [.autoreverse],
                 animations: {
-                    card.transform = CGAffineTransform.identity.translatedBy(x: 0.0, y: 100.0)
+                    card.transform = CGAffineTransform.identity.translatedBy(x: 0.0, y: 200.0)
                     card.alpha = 0
-            })
+                })
             int += 0.1
             i -= 1
         }
@@ -164,10 +175,6 @@ class SetGameViewController: UIViewController {
         default:
             cardView.shade = "empty"
         }
-        
-        //        for cardView in gameView.subviews {
-        //            cardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(standOut(_:))))
-        //        }
         return cardView
     }
     
@@ -210,7 +217,8 @@ class SetGameViewController: UIViewController {
         
     }
     
-    @IBAction func peakButton(_ sender: UIButton) { // button will highlight 3 cards for one second that currently form a match and will deduct points from the current score
+    @IBAction func peakButton(_ sender: UIButton) {
+        // button will highlight 3 cards for one second that currently form a match and will deduct points from the current score
         game.score -= 4
         var found = false
         for i in 0..<gameView.subviews.count{
@@ -237,19 +245,28 @@ class SetGameViewController: UIViewController {
             if found{break}
         }
     }
-    
-    
-    func showCard(card: UIView){
+
+    func showCard(card: CardView, index: Int){
+        card.frame.origin = newCards.frame.origin
+        
+        card.isHidden = true
+        card.alpha = 0
+        
         var int = 0.0
         int = delayTime
-        card.alpha = 0
+
         UIViewPropertyAnimator.runningPropertyAnimator(
             withDuration: 1.0,
             delay: int,
-            options: [],
+            options: [.curveEaseInOut],
             animations: {
-                card.transform = CGAffineTransform.identity.translatedBy(x: 0.0, y: -500.0)
-                card.alpha = 1
+                if let newFrame = self.grid[index] {
+                    print(card.frame)
+                    card.frame.origin = newFrame.origin
+                    print(card.frame)
+                    card.isHidden = false
+                    card.alpha = 1
+                }
         }
             //                completion: <#T##((UIViewAnimatingPosition) -> Void)?##((UIViewAnimatingPosition) -> Void)?##(UIViewAnimatingPosition) -> Void#>
         )
@@ -257,13 +274,15 @@ class SetGameViewController: UIViewController {
     
     func addCard(){
         delayTime += 0.1
+        var index = 0
         let currentCard = addCardToTheEnd()
         gameView.addSubview(currentCard)
-        showCard(card: currentCard)
-        //        delay = false
+        showCard(card: currentCard, index: index)
+        index += 1
     }
     
-    func checkIfAllDisabled() -> Bool{ //necessary to check if the game is about to come to the end
+    func checkIfAllDisabled() -> Bool{
+        //necessary to check if the game is about to come to the end
         if game.cardsOnTable.count < 3 {
             return true
         }
@@ -291,7 +310,6 @@ class SetGameViewController: UIViewController {
         }
         
         if gameView.subviews.count <= maxNumberOfVisible {
-            
             for index in 0..<gameView.subviews.count {
                 
                 let currentCard = game.cardsOnTable[index]
@@ -301,7 +319,6 @@ class SetGameViewController: UIViewController {
                     gameView.subviews[index].backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
                 }
             }
-            
         }
         if cardsToOut.count == 3 {
             for index in 0..<3 {

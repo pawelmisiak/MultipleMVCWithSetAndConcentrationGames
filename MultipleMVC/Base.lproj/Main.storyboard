@@ -139,6 +139,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rf3-60-vfi">
+                                <rect key="frame" x="16" y="631" width="111" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTl-RV-yb8">
+                                <rect key="frame" x="248" y="631" width="111" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -148,6 +158,8 @@
                         <outlet property="ScoreCount" destination="eST-tI-Qwe" id="rEY-Kv-D2W"/>
                         <outlet property="addThree" destination="FZ0-VQ-GF6" id="cHI-3n-v5y"/>
                         <outlet property="gameView" destination="Mff-0Z-N2N" id="zRX-Kf-OmD"/>
+                        <outlet property="newCards" destination="rf3-60-vfi" id="Mq5-ZP-yf3"/>
+                        <outlet property="oldCards" destination="pTl-RV-yb8" id="1ii-5W-R83"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -167,7 +179,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2286" y="-123"/>
+            <point key="canvasLocation" x="2285.5999999999999" y="-123.39901477832512"/>
         </scene>
         <!--Item-->
         <scene sceneID="piv-Ll-GnA">
