@@ -149,44 +149,51 @@ class SetGameViewController: UIViewController {
         }
     }
     
-    private func addCardToTheEnd() -> CardView {
-        let cardView = CardView()
-        let card = game.cards.remove(at: 0)
-        game.cardsOnTable.append(card) // add the card to the end of array
-        
-        cardView.numberOfObjects = card.symbolCount
-        switch card.symbol {
-        case "diamond": cardView.shape = "diamond"
-        case "oval": cardView.shape = "oval"
-        case "squigle": cardView.shape = "squigle"
-        default: break
-        }
-        
-        switch card.color {
-        case "blue": cardView.color = UIColor.cyan
-        case "green": cardView.color = UIColor.green
-        case "purple": cardView.color = UIColor.purple
-        default: break
-        }
-        
-        switch card.shade {
-        case "full": cardView.shade = "full"
-        case "striped": cardView.shade = "striped"
-        default:
-            cardView.shade = "empty"
-        }
-        return cardView
-    }
+//    private func addCardToTheEnd() -> CardView {
+//
+//        let cardView = CardView()
+//        let card = game.cards.remove(at: 0)
+//        game.cardsOnTable.append(card) // add the card to the end of array
+//
+//        cardView.numberOfObjects = card.symbolCount
+//        switch card.symbol {
+//        case "diamond": cardView.shape = "diamond"
+//        case "oval": cardView.shape = "oval"
+//        case "squigle": cardView.shape = "squigle"
+//        default: break
+//        }
+//
+//        switch card.color {
+//        case "blue": cardView.color = UIColor.cyan
+//        case "green": cardView.color = UIColor.green
+//        case "purple": cardView.color = UIColor.purple
+//        default: break
+//        }
+//
+//        switch card.shade {
+//        case "full": cardView.shade = "full"
+//        case "striped": cardView.shade = "striped"
+//        default:
+//            cardView.shade = "empty"
+//        }
+//        return cardView
+//    }
     
     
-    private func insertCard(index: Int) {
+    private func insertCard(index: Int) -> CardView {
         let cardView = CardView()
         var card = Card()
-        if game.cards.count > 0 {
+        if visibleCards > gameView.subviews.count && game.cards.count > 0 {
             card = game.cards.remove(at: 0)
-            game.cardsOnTable[index] = card // add the card at the specific location
+            game.cardsOnTable.append(card) // add the card to the end of array
         } else {
-            game.cardsOnTable.remove(at: index)
+            if game.cards.count > 0 {
+                card = game.cards.remove(at: 0)
+                game.cardsOnTable[index] = card // add the card at the specific location
+            }
+//            } else {
+//                game.cardsOnTable.remove(at: index)
+//            }
         }
         
         cardView.numberOfObjects = card.symbolCount
@@ -210,11 +217,16 @@ class SetGameViewController: UIViewController {
         default:
             cardView.shade = "empty"
         }
-        gameView.subviews[index].removeFromSuperview()
-        if game.cards.count > 0 {
-            gameView.insertSubview(cardView, at: index)
-        }
         
+        if visibleCards > gameView.subviews.count {
+            return cardView
+        } else {
+            gameView.subviews[index].removeFromSuperview()
+            if game.cards.count > 0 {
+                gameView.insertSubview(cardView, at: index)
+            }
+        }
+        return cardView
     }
     
     @IBAction func peakButton(_ sender: UIButton) {
@@ -261,9 +273,9 @@ class SetGameViewController: UIViewController {
             options: [.curveEaseInOut],
             animations: {
                 if let newFrame = self.grid[index] {
-                    print(card.frame)
+//                    print(card.frame)
                     card.frame.origin = newFrame.origin
-                    print(card.frame)
+//                    print(card.frame)
                     card.isHidden = false
                     card.alpha = 1
                 }
@@ -275,7 +287,7 @@ class SetGameViewController: UIViewController {
     func addCard(){
         delayTime += 0.1
         var index = 0
-        let currentCard = addCardToTheEnd()
+        let currentCard = insertCard(index: 0)
         gameView.addSubview(currentCard)
         showCard(card: currentCard, index: index)
         index += 1
@@ -292,7 +304,6 @@ class SetGameViewController: UIViewController {
     
     private func updateViewFromModel() {
         delayTime = 0 // reset delay after each use
-        
         if game.cards.count < 3 || visibleCards == 81 {
             addThree.isEnabled = false
             addThree.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
@@ -300,8 +311,13 @@ class SetGameViewController: UIViewController {
         ScoreCount.text = "Score: \(game.score)" // adjust the score here
         
         if visibleCards > gameView.subviews.count && game.cards.count > 0 {
-            while visibleCards != gameView.subviews.count {
+            while visibleCards != game.cardsOnTable.count {
+                
                 addCard()
+                print("game.cards \(game.cards.count)")
+                print("subviews \(gameView.subviews.count)")
+                print("visible cards \(visibleCards)")
+                print("cards on table \(game.cardsOnTable.count)")
             }
         }
         
@@ -331,6 +347,7 @@ class SetGameViewController: UIViewController {
             cardsToOut = []
             
         }
+        
     }
 }
 
