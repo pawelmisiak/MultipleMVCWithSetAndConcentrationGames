@@ -27,7 +27,7 @@ class SetGameViewController: UIViewController {
     
     @IBAction func reset() { // reset the game to the original state
         resetAnimation()
-        let timeToWait = Int(ceil(Double(gameView.subviews.count) * 0.1 + 0.5))
+        let timeToWait = Int(ceil(Double(gameView.subviews.count) * 0.05 + 0.5))
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeToWait), execute: {
             for card in self.gameView.subviews{
                 card.removeFromSuperview()
@@ -54,8 +54,6 @@ class SetGameViewController: UIViewController {
                 options: [.autoreverse],
                 animations: {
                     card.frame.origin = self.oldCards.frame.origin
-//                                        card.alpha = 0
-//                                        card.isHidden = true
             })
             int += 0.05
             i -= 1
@@ -204,21 +202,17 @@ class SetGameViewController: UIViewController {
                     card.isHidden = false
                     card.alpha = 1
                 }
-                //                card.frame.origin = self.grid[index]!.origin
-        }
-            //                completion: <#T##((UIViewAnimatingPosition) -> Void)?##((UIViewAnimatingPosition) -> Void)?##(UIViewAnimatingPosition) -> Void#>
-        )
+        })
     }
     
     func addCard(){
-        delayTime += 0.1
+        delayTime += 0.05
         var index = 0
         let currentCard = insertCard(index: 0)
         gameView.addSubview(currentCard)
         addCardAnimation(card: currentCard, index: index)
         index += 1
     }
-    
     
     @IBAction func peakButton(_ sender: UIButton) {
         // button will highlight 3 cards for one second that currently form a match and will deduct points from the current score
@@ -233,20 +227,42 @@ class SetGameViewController: UIViewController {
                         card3: game.cardsOnTable[k]) {
                         found = true
                         
-                        UIViewPropertyAnimator.runningPropertyAnimator(
-                            withDuration: 2.0,
+                        UIView.animate(
+                            withDuration: 1,
                             delay: 0,
-                            options: [.curveEaseIn, .autoreverse],
+//                            options: [.autoreverse],
                             animations: {
-                                self.gameView.subviews[i].backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-                                self.gameView.subviews[i].transform = CGAffineTransform.identity.scaledBy(x: 3.0, y: 3.0)
-                                self.gameView.subviews[j].backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-                                self.gameView.subviews[j].transform = CGAffineTransform.identity.scaledBy(x: 3.0, y: 3.0)
-                                self.gameView.subviews[k].backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-                                self.gameView.subviews[k].transform = CGAffineTransform.identity.scaledBy(x: 3.0, y: 3.0)
-                        })
+                                self.gameView.subviews[i].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                                self.gameView.subviews[i].transform = CGAffineTransform(scaleX: -1, y: -1)
+                                self.gameView.subviews[j].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                                self.gameView.subviews[j].transform = CGAffineTransform(scaleX: -1, y: -1)
+                                self.gameView.subviews[k].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                                self.gameView.subviews[k].transform = CGAffineTransform(scaleX: -1, y: -1)
+                        },
+                            completion: {_ in
+                                
+                                UIView.animate(withDuration: 1) {
+                                    self.gameView.subviews[i].transform = CGAffineTransform(scaleX: 1, y: 1)
+                                    self.gameView.subviews[j].transform = CGAffineTransform(scaleX: 1, y: 1)
+                                    self.gameView.subviews[k].transform = CGAffineTransform(scaleX: 1, y: 1)
+                                }
+                        }
+                        )
+//                        UIViewPropertyAnimator.runningPropertyAnimator(
+//                            withDuration: 1.5,
+//                            delay: 0,
+//                            options: [],
+//                            animations: {
+//                                self.gameView.subviews[i].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//                                self.gameView.subviews[i].transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+//                                self.gameView.subviews[j].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//                                self.gameView.subviews[j].transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//                                self.gameView.subviews[k].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//                                self.gameView.subviews[k].transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//                        })
                         ScoreCount.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: { // asynchronous function that allows delay in farther execution without pausing the entire system
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: { // asynchronous function that allows delay in farther execution without pausing the entire system
+                            self.ScoreCount.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                             self.updateViewFromModel()
                         })
                     }
@@ -265,7 +281,6 @@ class SetGameViewController: UIViewController {
         }
         return false
     }
-    
     
     private func updateViewFromModel() {
         delayTime = 0 // reset delay after each use
@@ -292,7 +307,7 @@ class SetGameViewController: UIViewController {
                 if currentCard.isSelected {
                     gameView.subviews[index].backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
                 } else {
-                    gameView.subviews[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    gameView.subviews[index].backgroundColor = #colorLiteral(red: 0.4352941176, green: 0.4431372549, blue: 0.4745098039, alpha: 1)
                 }
             }
         }
@@ -309,9 +324,7 @@ class SetGameViewController: UIViewController {
             maxNumberOfVisible -= 3
             
             cardsToOut = []
-            
         }
-        
     }
 }
 

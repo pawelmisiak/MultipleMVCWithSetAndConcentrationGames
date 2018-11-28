@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mff-0Z-N2N" customClass="GameView" customModule="MultipleMVC" customModuleProvider="target">
-                                <rect key="frame" x="16" y="44" width="343" height="538"/>
+                                <rect key="frame" x="16" y="44" width="343" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -138,17 +138,21 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rf3-60-vfi">
-                                <rect key="frame" x="16" y="590" width="111" height="59"/>
+                                <rect key="frame" x="16" y="590" width="90" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTl-RV-yb8">
-                                <rect key="frame" x="248" y="590" width="111" height="59"/>
+                                <rect key="frame" x="273" y="590" width="86" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eST-tI-Qwe">
-                                <rect key="frame" x="155" y="609" width="64" height="21"/>
+                                <rect key="frame" x="131" y="609" width="113" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="2Nx-Iz-CZ1"/>
+                                    <constraint firstAttribute="height" constant="21" id="BrF-7Q-68P"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -156,20 +160,20 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="eST-tI-Qwe" firstAttribute="top" secondItem="Mff-0Z-N2N" secondAttribute="bottom" constant="27" id="0cM-oD-twi"/>
-                            <constraint firstItem="Xye-Zi-tqg" firstAttribute="top" secondItem="eST-tI-Qwe" secondAttribute="bottom" constant="52" id="59W-TJ-BdH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xye-Zi-tqg" secondAttribute="bottom" constant="7" id="5Kq-eh-Wmb"/>
                             <constraint firstItem="Xye-Zi-tqg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FZ0-VQ-GF6" secondAttribute="trailing" constant="8" symbolic="YES" id="7GV-ay-e7P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FZ0-VQ-GF6" secondAttribute="bottom" constant="7" id="9KY-9m-Bxz"/>
-                            <constraint firstItem="BDT-Ow-PyQ" firstAttribute="leading" secondItem="Xye-Zi-tqg" secondAttribute="trailing" constant="61" id="9S1-0O-izZ"/>
+                            <constraint firstItem="BDT-Ow-PyQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xye-Zi-tqg" secondAttribute="trailing" constant="61" id="9S1-0O-izZ"/>
                             <constraint firstItem="Mff-0Z-N2N" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9oH-iv-lCP"/>
                             <constraint firstItem="Xye-Zi-tqg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Djs-81-bW7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mff-0Z-N2N" secondAttribute="trailing" constant="16" id="Exl-eo-t0g"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eST-tI-Qwe" secondAttribute="trailing" constant="156" id="PSH-oM-yLx"/>
-                            <constraint firstItem="eST-tI-Qwe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="155" id="Uxb-Bv-Lc8"/>
+                            <constraint firstItem="eST-tI-Qwe" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="NFS-kp-BRF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BDT-Ow-PyQ" secondAttribute="bottom" constant="7" id="bGf-rR-zFO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eST-tI-Qwe" secondAttribute="bottom" constant="99" id="caM-kg-bWQ"/>
                             <constraint firstItem="Mff-0Z-N2N" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="f6K-lx-gJx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BDT-Ow-PyQ" secondAttribute="trailing" constant="45" id="gME-1l-edK"/>
                             <constraint firstItem="FZ0-VQ-GF6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="46" id="icE-9i-kTC"/>
+                            <constraint firstItem="eST-tI-Qwe" firstAttribute="top" secondItem="Mff-0Z-N2N" secondAttribute="bottom" constant="30" id="sfy-fc-HU5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BDT-Ow-PyQ" secondAttribute="trailing" id="ysT-YV-rU3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
