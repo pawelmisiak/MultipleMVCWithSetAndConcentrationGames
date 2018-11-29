@@ -13,9 +13,15 @@ class SetGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewFromModel()
-//        grid = Grid(for: gameView.bounds, withNoOfFrames: gameView.subviews.count, forIdeal: 2.0)
     }
-    lazy var grid = Grid(for: gameView.bounds, withNoOfFrames: gameView.subviews.count, forIdeal: 2.0)
+//    lazy var grid = Grid(for: gameView.bounds, withNoOfFrames: gameView.subviews.count)
+    
+    func flip(card: CardView) -> CardView {
+        card.color = UIColor.white
+        card.backgroundColor = UIColor.white
+        
+        return card
+    }
     
     private lazy var game = Set()
     var delayTime = 0.0
@@ -53,7 +59,22 @@ class SetGameViewController: UIViewController {
                 options: [],
                 animations: {
                     card.frame.origin = self.oldCards.frame.origin
-            })
+                    UIView.transition(with: card, duration: 1, options: [.transitionFlipFromTop],
+                                      animations: {
+                                        card.alpha = 0
+                    })
+
+            },
+                completion: {_ in
+                    UIView.animate(
+                        withDuration: 1.0,
+                        delay: int,
+                        options: [],
+                        animations: {
+                            
+                    })
+                    }
+                    )
             int += 0.05
             i -= 1
         }
@@ -124,17 +145,23 @@ class SetGameViewController: UIViewController {
                                 ScoreCount.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
                                 cardsToOut = game.arrayOfMatchedCardIndices // array of index to remove from the screen
                                 var int = 0.0
+                                let grid = Grid(for: gameView.bounds, withNoOfFrames: gameView.subviews.count, forIdeal: 2.0)
                                 for index in self.cardsToOut{
+                                    let card = gameView.subviews[index]
+                                    card.frame = grid[index]!
                                     UIView.animate(
                                         withDuration: 0.8,
                                         delay: int,
                                         options: [],
                                         animations: {
-                                            self.gameView.subviews[index].frame = self.oldCards.frame
+                                            
+                                           card.frame = self.oldCards.frame
+//                                            card.frame.origin = self.oldCards.frame.origin
                                     })
                                     int += 0.05
                                 }
                             }
+                            
                             if game.wrongMatch{
                                 gameView.subviews[index].backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
                                 ScoreCount.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
@@ -142,6 +169,16 @@ class SetGameViewController: UIViewController {
                                 
                                 for index in game.arrayOfMatchedCardIndices{
                                     
+                                    let card = gameView.subviews[index]
+//                                    let newCard = CardView()
+//                                    newCard.color = UIColor.white
+//                                    newCard.backgroundColor = UIColor.white
+//                                    newCard.shade = "empty"
+//                                    newCard.shape = "diamond"
+//                                    newCard.numberOfObjects = 1
+//                                    self.gameView.subviews[index].removeFromSuperview()
+//                                    self.gameView.insertSubview(newCard, at: index)
+                                    print(gameView.subviews[0])
                                     UIView.animate(
                                         withDuration: 0.8,
                                         delay: 0,
@@ -150,9 +187,12 @@ class SetGameViewController: UIViewController {
                                                 self.gameView.subviews[index].transform = CGAffineTransform(scaleX: -1, y: -1)
                                     },
                                             completion: {_ in
+                                                UIView.transition(with: card, duration: 1, options: [.transitionFlipFromTop],
+                                                                  animations: {
+                                                })
                                             self.gameView.subviews[index].transform = CGAffineTransform(scaleX: 1, y: 1)
                                     })
-                                    
+                                   
                                 }
                             }
                             wasCalled = true
@@ -230,35 +270,45 @@ class SetGameViewController: UIViewController {
     }
     
     func addCardAnimation(card: CardView, index: Int){
-
+        let grid = Grid(for: gameView.bounds, withNoOfFrames: gameView.subviews.count, forIdeal: 2.0)
+        print(index)
         var int = 0.0
         int = delayTime
         
         card.isHidden = true
         card.alpha = 0
         card.frame = newCards.frame
+        
         UIView.animate(
             withDuration: 1.0,
             delay: int,
             options: [],
             animations: {
-                if let newFrame = self.grid[0] {
-                    
-
-                    card.frame = newFrame
-                    card.isHidden = false
-                    card.alpha = 1
+                if index == 0 {
+                    card.frame = grid[index]!
+                }else{
+                    card.frame = grid[index - 1]!
                 }
+                card.isHidden = false
+                card.alpha = 1
+                
+                
+        },
+            completion: {_ in
+                UIView.transition(with: card, duration: 1, options: [.transitionFlipFromTop],
+                                  animations: {
+                })
         })
+        
     }
     
     var indexOfAddedCard = 99;
     func addCard(){
-        
+        print(gameView.subviews.count)
         if indexOfAddedCard == 99 {
             let currentCard = insertCard(index: 0)
             gameView.addSubview(currentCard)
-            addCardAnimation(card: currentCard, index: 0)
+            addCardAnimation(card: currentCard, index: gameView.subviews.count)
             gameView.setNeedsLayout()
             gameView.setNeedsDisplay()
         }

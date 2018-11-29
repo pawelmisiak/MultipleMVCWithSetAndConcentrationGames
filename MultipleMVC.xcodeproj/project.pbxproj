@@ -11,6 +11,7 @@
 		4F38A32E21A501E30054F169 /* ConcentrationGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F38A32D21A501E30054F169 /* ConcentrationGameViewController.swift */; };
 		4F38A33021A501F00054F169 /* ConcentrationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F38A32F21A501F00054F169 /* ConcentrationCard.swift */; };
 		4F38A33221A502020054F169 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F38A33121A502020054F169 /* Concentration.swift */; };
+		4F962F1821AF6CFF001C0888 /* Untitled-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F962F1721AF6CFF001C0888 /* Untitled-1.jpg */; };
 		4FB640D121A4F9B30003742D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640D021A4F9B30003742D /* AppDelegate.swift */; };
 		4FB640D321A4F9B30003742D /* SetGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB640D221A4F9B30003742D /* SetGameViewController.swift */; };
 		4FB640D621A4F9B30003742D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB640D421A4F9B30003742D /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		4F38A32D21A501E30054F169 /* ConcentrationGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationGameViewController.swift; sourceTree = "<group>"; };
 		4F38A32F21A501F00054F169 /* ConcentrationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationCard.swift; sourceTree = "<group>"; };
 		4F38A33121A502020054F169 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		4F962F1721AF6CFF001C0888 /* Untitled-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Untitled-1.jpg"; sourceTree = "<group>"; };
 		4FB640CD21A4F9B30003742D /* MultipleMVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipleMVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB640D021A4F9B30003742D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FB640D221A4F9B30003742D /* SetGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				4FB640D021A4F9B30003742D /* AppDelegate.swift */,
 				4FB640D421A4F9B30003742D /* Main.storyboard */,
 				4FB640D721A4F9B40003742D /* Assets.xcassets */,
+				4F962F1721AF6CFF001C0888 /* Untitled-1.jpg */,
 				4FB640D921A4F9B40003742D /* LaunchScreen.storyboard */,
 				4FB640DC21A4F9B40003742D /* Info.plist */,
 			);
@@ -165,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F962F1821AF6CFF001C0888 /* Untitled-1.jpg in Resources */,
 				4FB640DB21A4F9B40003742D /* LaunchScreen.storyboard in Resources */,
 				4FB640D821A4F9B40003742D /* Assets.xcassets in Resources */,
 				4FB640D621A4F9B30003742D /* Main.storyboard in Resources */,
@@ -333,7 +337,6 @@
 		4FB640E021A4F9B40003742D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RFWABKHTM5;
 				INFOPLIST_FILE = MultipleMVC/Info.plist;
@@ -351,7 +354,6 @@
 		4FB640E121A4F9B40003742D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RFWABKHTM5;
 				INFOPLIST_FILE = MultipleMVC/Info.plist;
