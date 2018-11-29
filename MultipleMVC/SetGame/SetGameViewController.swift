@@ -114,12 +114,11 @@ class SetGameViewController: UIViewController {
     var cardsToOut = Array<Int>()
     
     func touchCardAnimation(index: Int){
-        let card = CardView()
-        card.color = UIColor.white
-        card.shade = "empty"
-        card.shape = "diamond"
-        card.numberOfObjects = 1
-        
+//        let card = CardView()
+//        card.color = UIColor.white
+//        card.shade = "empty"
+//        card.shape = "diamond"
+//        card.numberOfObjects = 1
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
@@ -150,12 +149,13 @@ class SetGameViewController: UIViewController {
                                     let card = gameView.subviews[index]
                                     card.frame = grid[index]!
                                     UIView.animate(
-                                        withDuration: 0.8,
+                                        withDuration: 1,
                                         delay: int,
-                                        options: [],
+                                        options: [.curveEaseOut],
                                         animations: {
-                                            
                                            card.frame = self.oldCards.frame
+//                                            card.frame.origin.x = self.oldCards.frame.origin.x
+//                                            card.frame.origin.y = self.oldCards.frame.origin.y
 //                                            card.frame.origin = self.oldCards.frame.origin
                                     })
                                     int += 0.05

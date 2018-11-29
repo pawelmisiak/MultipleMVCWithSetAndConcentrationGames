@@ -111,10 +111,10 @@ class ConcentrationGameViewController: UIViewController { //ViewController exten
             let currentButton = cardButtons[index]
             let currentCard = game.cards[index]
             if currentCard.isFaceUp {
-                currentButton.setTitle(emoji(for: currentCard), for: UIControl.State.normal)
+                currentButton.setTitle(emoji(for: currentCard), for: UIControlState.normal)
                 currentButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             } else {
-                currentButton.setTitle("", for: UIControl.State.normal)
+                currentButton.setTitle("", for: UIControlState.normal)
                 currentButton.backgroundColor = currentCard.isMatched ?
                     correspondingThemeColor[currentThemeNumber].inverse() : correspondingThemeColor[currentThemeNumber]
             }
