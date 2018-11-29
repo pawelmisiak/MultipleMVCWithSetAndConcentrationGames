@@ -9,12 +9,11 @@
 import UIKit
 
 class GameView: UIView {
-    
     override func layoutSubviews() {
         super .layoutSubviews()
         
         let setGrid = Grid(for: self.frame, withNoOfFrames: self.subviews.count, forIdeal: 2.0)
-        
+        print("gameView")
         for index in self.subviews.indices {
             if var frame = setGrid[index] {
                 frame.size.width -= 5
